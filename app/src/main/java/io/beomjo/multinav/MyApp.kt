@@ -6,21 +6,18 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import io.beomjo.multinav.ui.home.HomeDirections
 import io.beomjo.multinav.ui.theme.MyAppTheme
 
 @Composable
 fun MyApp() {
     MyAppTheme {
         val navController = rememberNavController()
-        val navigationActions = remember(navController) {
-            MyAppActions(navController)
-        }
 
         Scaffold(
             bottomBar = { MyBottomNavigation(navController = navController) }
@@ -34,20 +31,12 @@ fun MyApp() {
 fun MyBottomNavigation(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute =
-        navBackStackEntry?.destination?.route ?: MyAppDestinations.HOME_ROUTE
-
-    val items = listOf(
-        MyAppDestinations.HOME_ROUTE,
-        MyAppDestinations.COMPANY_ROUTE,
-        MyAppDestinations.NOTIFICATION_ROUTE,
-        MyAppDestinations.MORE_ROUTE,
-    )
+        navBackStackEntry?.destination?.route ?: TabDirections.HOME
+    val tabs = TabDirections.values().map { it.route }.toList()
     BottomNavigation {
-        items.forEach { item ->
+        tabs.forEach { item ->
             BottomNavigationItem(
-                icon = {
-
-                },
+                icon = {},
                 label = {
                     Text(
                         text = item,
@@ -60,9 +49,8 @@ fun MyBottomNavigation(navController: NavController) {
                 selected = currentRoute == item,
                 onClick = {
                     navController.navigate(item) {
-
-                        navController.graph.startDestinationRoute?.let { screen_route ->
-                            popUpTo(screen_route) {
+                        navController.graph.startDestinationRoute?.let { screenRoute ->
+                            popUpTo(screenRoute) {
                                 saveState = true
                             }
                         }
