@@ -18,13 +18,7 @@ fun NavGraphBuilder.addMoreGraph(
 ) {
     composable(MoreDirections.ROOT.route) {
         MoreScreen {
-            navController.navigate(MoreDirections.DETAIL.route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                launchSingleTop = true
-                restoreState = true
-            }
+            navController.navigate(MoreDirections.DETAIL.route)
         }
     }
     composable(MoreDirections.DETAIL.route) {

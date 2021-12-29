@@ -34,28 +34,34 @@ fun MyBottomNavigation(navController: NavController) {
         navBackStackEntry?.destination?.route ?: TabDirections.HOME
     val tabs = TabDirections.values().map { it.route }.toList()
     BottomNavigation {
-        tabs.forEach { item ->
+        tabs.forEach { tab ->
             BottomNavigationItem(
                 icon = {},
                 label = {
                     Text(
-                        text = item,
+                        text = tab,
                         fontSize = 9.sp
                     )
                 },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
-                selected = currentRoute == item,
+                selected = currentRoute == tab,
                 onClick = {
-                    navController.navigate(item) {
-                        navController.graph.startDestinationRoute?.let { screenRoute ->
-                            popUpTo(screenRoute) {
+                    navController.navigate(tab) {
+                        val currentRouteString = currentRoute.toString()
+                        if(tabs.contains(currentRouteString)){
+                            popUpTo(currentRouteString) {
                                 saveState = true
+                                if (!currentRouteString.startsWith(TabDirections.HOME.route)) {
+                                    inclusive = true
+                                }
                             }
+
+                            launchSingleTop = true
+                            restoreState = true
                         }
-                        launchSingleTop = true
-                        restoreState = true
+
                     }
                 }
             )

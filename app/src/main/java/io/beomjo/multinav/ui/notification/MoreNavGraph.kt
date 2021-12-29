@@ -18,13 +18,7 @@ fun NavGraphBuilder.addNotificationGraph(
 ) {
     composable(NotificationDirections.ROOT.route) {
         NotificationScreen {
-            navController.navigate(NotificationDirections.DETAIL.route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                launchSingleTop = true
-                restoreState = true
-            }
+            navController.navigate(NotificationDirections.DETAIL.route)
         }
     }
     composable(NotificationDirections.DETAIL.route) {

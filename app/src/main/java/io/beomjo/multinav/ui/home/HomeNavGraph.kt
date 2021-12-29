@@ -18,13 +18,7 @@ fun NavGraphBuilder.addHomeGraph(
 ) {
     composable(HomeDirections.ROOT.route) {
         HomeScreen {
-            navController.navigate(HomeDirections.DETAIL.route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                launchSingleTop = true
-                restoreState = true
-            }
+            navController.navigate(HomeDirections.DETAIL.route)
         }
     }
     composable(HomeDirections.DETAIL.route) {

@@ -18,13 +18,7 @@ fun NavGraphBuilder.addCompanyGraph(
 ) {
     composable(CompanyDirections.ROOT.route) {
         CompanyScreen {
-            navController.navigate(CompanyDirections.DETAIL.route) {
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                launchSingleTop = true
-                restoreState = true
-            }
+            navController.navigate(CompanyDirections.DETAIL.route)
         }
     }
     composable(CompanyDirections.DETAIL.route) {
