@@ -9,6 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import io.beomjo.multinav.ui.home.HomeDirections
@@ -48,23 +50,26 @@ fun MyBottomNavigation(navController: NavController) {
                 alwaysShowLabel = true,
                 selected = currentRoute == tab,
                 onClick = {
-                    navController.navigate(tab) {
-                        val currentRouteString = currentRoute.toString()
-                        if(tabs.contains(currentRouteString)){
-                            popUpTo(currentRouteString) {
-                                saveState = true
-                                if (!currentRouteString.startsWith(TabDirections.HOME.route)) {
-                                    inclusive = true
-                                }
-                            }
-
+                    if (tab != currentRoute) {
+                        navController.navigate(tab) {
                             launchSingleTop = true
                             restoreState = true
+                            // Pop up backstack to the first destination and save state. This makes going back
+                            // to the start destination when pressing back in any other bottom tab.
+                            popUpTo(findStartDestination(navController.graph).id) {
+                                saveState = true
+                            }
                         }
-
                     }
                 }
             )
         }
     }
 }
+
+private tailrec fun findStartDestination(graph: NavDestination): NavDestination {
+    return if (graph is NavGraph) findStartDestination(graph.startDestination!!) else graph
+}
+
+private val NavGraph.startDestination: NavDestination?
+    get() = findNode(startDestinationId)
