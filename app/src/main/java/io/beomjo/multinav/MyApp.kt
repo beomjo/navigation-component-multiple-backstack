@@ -1,12 +1,17 @@
 package io.beomjo.multinav
 
+import androidx.annotation.DrawableRes
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -32,11 +37,14 @@ fun MyApp() {
     }
 }
 
-enum class TabDirections(val route:String) {
-    HOME("home"),
-    COMPANY("company"),
-    NOTIFICATION("notification"),
-    MORE("more"),
+enum class TabDirections(
+    val route: String,
+    @DrawableRes val icon: Int
+) {
+    HOME("home", R.drawable.ic_home),
+    COMPANY("company", R.drawable.ic_company),
+    NOTIFICATION("notification", R.drawable.ic_notification),
+    MORE("more", R.drawable.ic_more),
 
 }
 
@@ -45,23 +53,29 @@ fun MyBottomNavigation(navController: NavController) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute =
         navBackStackEntry?.destination?.route ?: TabDirections.HOME
-    val tabs = TabDirections.values().map { it.route }.toList()
+    val tabs = TabDirections.values().toList()
     BottomNavigation {
         tabs.forEach { tab ->
+            val route = tab.route
             BottomNavigationItem(
-                icon = {},
-                label = { Text(text = tab, fontSize = 9.sp) },
+                icon = {
+                    Image(
+                        painterResource(tab.icon),
+                        contentDescription = "",
+                    )
+                },
+                label = { Text(text = route, fontSize = 9.sp) },
                 selectedContentColor = Color.White,
                 unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
-                selected = currentRoute == tab,
+                selected = currentRoute == route,
                 onClick = {
-                    if (currentRoute.toString().startsWith(tab)) {
-                        navController.navigate(findTabRootRoute(tab)) {
+                    if (currentRoute.toString().startsWith(route)) {
+                        navController.navigate(findTabRootRoute(route)) {
                             popUpTo(findStartDestination(navController.graph).id)
                         }
-                    } else if (tab != currentRoute) {
-                        navController.navigate(tab) {
+                    } else if (route != currentRoute) {
+                        navController.navigate(route) {
                             launchSingleTop = true
                             restoreState = true
                             // Pop up backstack to the first destination and save state. This makes going back
