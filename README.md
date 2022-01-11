@@ -26,6 +26,7 @@ navigation
     - Result
         - HomeTab -> CompanyTab -> NotificationTab -> HomeTab
     - Preview
+        - ![2](./previews/2.gif)
 - Case 3
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Click NotificationTab ->
@@ -33,6 +34,7 @@ navigation
     - Result
         - HomeTab -> CompanyTab -> Company DetailScreen -> NotificationTab -> CompanyDetailScreen
     - Preview
+        - ![3](./previews/3.gif)
 - Case 4
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Move Company DetailScreen 2
@@ -40,6 +42,7 @@ navigation
     - Result
         - HomeTab -> CompanyTab -> CompanyDetailScreen -> CompanyDetailScreen2 -> CompanyTab(Root)
     - Preview
+        - ![4](./previews/4.gif)
 - Case 5
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Move Company DetailScreen 2
@@ -48,6 +51,7 @@ navigation
         - HomeTab -> CompanyTab -> CompanyDetailScreen -> CompanyDetailScreen2 -> NotificationTab ->
           CompanyDetailScreen2 -> CompanyTab(Root)
     - Preview
+        - ![5](./previews/5.gif)
 - Case 6
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Move Company DetailScreen 2
@@ -57,3 +61,4 @@ navigation
         - HomeTab -> CompanyTab -> CompanyDetailScreen -> CompanyDetailScreen2 -> NotificationTab ->
           CompanyDetailScreen2 -> CompanyDetailScreen -> CompanyTab(Root) -> HomeTab
     - Preview
+        - ![6](./previews/6.gif)
