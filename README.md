@@ -11,8 +11,7 @@ navigation
    the state when the previous tab is selected again.
 4. If you press the selected tab once more, it moves to the root of the graph of the selected tab.
 
-# Scenario
-
+## Preview
 - Case 1
     - User Action
         - Click HomeTab -> Click CompanyTab -> Perform BackPressed
