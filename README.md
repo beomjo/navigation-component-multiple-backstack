@@ -19,14 +19,14 @@ navigation
     - Result
         - HomeTab -> CompanyTab -> HomeTab
     - Preview
-        - ![1](./previews/1.gif)
+        - <img src="./previews/1.gif" width="350" height="600">
 - Case 2
     - User Action
         - Click HomeTab -> Click CompanyTab -> Click NotificationTab -> Perform BackPressed
     - Result
         - HomeTab -> CompanyTab -> NotificationTab -> HomeTab
     - Preview
-        - ![2](./previews/2.gif)
+        - <img src="./previews/2.gif" width="350" height="600">
 - Case 3
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Click NotificationTab ->
@@ -34,7 +34,7 @@ navigation
     - Result
         - HomeTab -> CompanyTab -> Company DetailScreen -> NotificationTab -> CompanyDetailScreen
     - Preview
-        - ![3](./previews/3.gif)
+        - <img src="./previews/3.gif" width="350" height="600">
 - Case 4
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Move Company DetailScreen 2
@@ -42,7 +42,7 @@ navigation
     - Result
         - HomeTab -> CompanyTab -> CompanyDetailScreen -> CompanyDetailScreen2 -> CompanyTab(Root)
     - Preview
-        - ![4](./previews/4.gif)
+        - <img src="./previews/4.gif" width="350" height="600">
 - Case 5
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Move Company DetailScreen 2
@@ -51,7 +51,7 @@ navigation
         - HomeTab -> CompanyTab -> CompanyDetailScreen -> CompanyDetailScreen2 -> NotificationTab ->
           CompanyDetailScreen2 -> CompanyTab(Root)
     - Preview
-        - ![5](./previews/5.gif)
+        - <img src="./previews/5.gif" width="350" height="600">
 - Case 6
     - User Action
         - Click HomeTab -> Click CompanyTab -> Move to DetailScreen -> Move Company DetailScreen 2
@@ -61,4 +61,4 @@ navigation
         - HomeTab -> CompanyTab -> CompanyDetailScreen -> CompanyDetailScreen2 -> NotificationTab ->
           CompanyDetailScreen2 -> CompanyDetailScreen -> CompanyTab(Root) -> HomeTab
     - Preview
-        - ![6](./previews/6.gif)
+        - <img src="./previews/6.gif" width="350" height="600">
